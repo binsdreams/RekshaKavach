@@ -1,6 +1,7 @@
 package com.rekshakavach.tracker.ui.join.di;
 
 import com.rekshakavach.tracker.di.scopes.FragmentScoped;
+import com.rekshakavach.tracker.ui.join.JoinPhoneActivity;
 import com.rekshakavach.tracker.ui.join.LoginFragment;
 import com.rekshakavach.tracker.ui.join.RegisterFragment;
 import com.rekshakavach.tracker.ui.join.UserDetailsFragment;
@@ -41,4 +42,5 @@ public abstract class PhoneEntryFragmentModule {
             modules = { JoinPhoneViewModelModule.class, JoinPhoneEntryModule.class}
     )
     abstract UserDetailsFragment contributeUserDetailsFragment();
+
 }

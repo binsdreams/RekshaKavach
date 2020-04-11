@@ -2,7 +2,6 @@ package com.rekshakavach.tracker.base
 
 import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
@@ -10,7 +9,6 @@ import android.os.Build
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.OnSuccessListener
 import com.rekshakavach.tracker.R
@@ -18,10 +16,11 @@ import com.rekshakavach.tracker.common.LocationUtils
 import com.rekshakavach.tracker.common.showSnackBar
 import com.rekshakavach.tracker.ui.join.permissions.LocationEnableFragment
 import com.rekshakavach.tracker.ui.join.permissions.LocationPermissionFragment
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.layout_action.*
 
 
-open class BaseActivity : AppCompatActivity() {
+open class DaggerBaseActivity : DaggerAppCompatActivity() {
     private lateinit var mLocationCallback :LocationCallback
     private var lastLocation: Location? = null
     private var fusedLocationClient: FusedLocationProviderClient? = null
@@ -40,10 +39,10 @@ open class BaseActivity : AppCompatActivity() {
     fun handleLocationPermission(){
         if(LocationUtils.isLocationPermissionDeniedForever(this)){
             val fragment = LocationPermissionFragment.getInstance()
-            fragment.setPermissionCallback{
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    intent.data = Uri.fromParts("package", this.packageName, null)
-                    startActivity(intent)
+            fragment.setPermissionCallback {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.data = Uri.fromParts("package", this.packageName, null)
+                startActivity(intent)
             }
             fragment.show(supportFragmentManager, "AddAddressFragment")
         }else  if(LocationUtils.isLocationPermissionsGranted(this).not()){
@@ -104,16 +103,5 @@ open class BaseActivity : AppCompatActivity() {
             fusedLocationClient?.removeLocationUpdates(mLocationCallback)
         }
         super.onDestroy()
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            LocationUtils.REQUEST_ACCESS_FINE_LOCATION -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    handleLocationPermission()
-                }
-            }
-        }
     }
 }

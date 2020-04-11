@@ -26,4 +26,18 @@
     <string name="signuup">Sign up →</string>
     <string name="haveAccount"> Already have an account?</string>
 
+
+    <string name="dev_on_location_title">Location is turned off!</string>
+    <string name="dev_on_location_message">Android phones require Location enabled in order to syc device location.
+		click the button below to enable Location.</string>
+    <string name="dev_guide_location_action">Enable</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="need_access_location_title">Device Location Required</string>
+    <string name="need_access_location_message">Application need permission to use your location</string>
+    <string name="allow_btn">Allow</string>
+
+    <string name="no_geocoder_available">No geocoder available</string>
+    <string name="no_location_data_provided">No location data provided</string>
+
 </resources>

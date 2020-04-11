@@ -17,8 +17,6 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
-const val KEY_ARGUMENT_CODE = "country_code"
-const val KEY_ARGUMENT_PHONE = "phoneNumber"
 class LoginFragment : DaggerFragment(){
 
     private lateinit var joinViewModel: JoinViewModel
@@ -41,10 +39,10 @@ class LoginFragment : DaggerFragment(){
                     R.color.snack_red
                 )
             } else if (password.isNullOrEmpty()) {
-            loginRoot.showSnackBar(getString(R.string.error_password),
-                R.color.snack_red
-            )
-        } else {
+                loginRoot.showSnackBar(getString(R.string.error_password),
+                    R.color.snack_red
+                )
+            } else {
                 signinBtn.isEnabled = false
                 loginProgress.visibility = View.VISIBLE
                 signinBtn.text = ""
@@ -76,7 +74,7 @@ class LoginFragment : DaggerFragment(){
 
         splashRoot.postDelayed({
             if(joinViewModel.isUserLoggedIn()) {
-             //todo
+                //todo
             }else{
                 splashRoot.animate()
                     .alpha(0f)
@@ -84,6 +82,7 @@ class LoginFragment : DaggerFragment(){
                     .setListener(object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator) {
                             splashRoot.visibility = View.GONE
+                            (activity!! as JoinPhoneActivity).handleLocationPermission()
                         }
                     })
             }
@@ -96,5 +95,7 @@ class LoginFragment : DaggerFragment(){
         loginProgress.visibility =View.GONE
         signinBtn.text = getString(R.string.signin)
     }
+
+
 
 }

@@ -6,9 +6,31 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="yourDialog" parent="Theme.MaterialComponents.Dialog.Alert">
-        <item name="android:colorAccent">#F00</item>
-        <item name="android:colorPrimary">#0F0</item>
-        <item name="android:colorPrimaryDark">#00F</item>
+    <style name="MaterialAlertDialog_Background" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Background Color-->
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <!-- Text Color for title and message -->
+        <item name="colorOnSurface">@color/white</item>
+        <!-- Style for positive button -->
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <!-- Style for negative button -->
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
     </style>
+
+
+    <style name="PositiveButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <!-- text color for the button -->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginStart">@dimen/padding_small</item>
+        <!-- Background tint for the button -->
+        <item name="backgroundTint">@color/snack_green</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <!-- text color for the button -->
+        <item name="android:textColor">@color/white</item>
+        <!-- Background tint for the button -->
+        <item name="backgroundTint">@color/divider_color</item>
+    </style>
+
 </resources>

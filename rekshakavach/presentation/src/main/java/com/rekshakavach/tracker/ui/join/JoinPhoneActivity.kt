@@ -2,11 +2,12 @@ package com.rekshakavach.tracker.ui.join
 
 import android.content.Context
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.rekshakavach.tracker.R
+import com.rekshakavach.tracker.base.BaseActivity
 
-class JoinPhoneActivity : AppCompatActivity() {
+class JoinPhoneActivity : BaseActivity() {
 
     companion object{
         fun getIntent(context : Context) : Intent {
@@ -19,6 +20,14 @@ class JoinPhoneActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join_phone)
+    }
+
+    fun requestForLocationAndHandlePermission(){
+        handleLocationPermission()
+    }
+
+    override fun  onLocationReceived(location: Location?){
+
     }
 
 }
