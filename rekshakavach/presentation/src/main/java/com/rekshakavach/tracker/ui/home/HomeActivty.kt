@@ -1,4 +1,4 @@
-package com.rekshakavach.tracker.ui.join
+package com.rekshakavach.tracker.ui.home
 
 import android.content.Context
 import android.content.Intent
@@ -8,11 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import com.rekshakavach.tracker.R
 import com.rekshakavach.tracker.base.BaseActivity
 
-class JoinPhoneActivity : BaseActivity() {
+class HomeActivty : BaseActivity() {
 
     companion object{
         fun getIntent(context : Context) : Intent {
-            var intent =  Intent(context, JoinPhoneActivity::class.java)
+            var intent =  Intent(context, HomeActivty::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             return intent
         }
@@ -23,10 +23,10 @@ class JoinPhoneActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join_phone)
+        setContentView(R.layout.activity_home)
     }
 
-    fun requestForLocationAndHandlePermission(locLive : MutableLiveData<Location>,adLive:MutableLiveData<String>){
+    fun requestForLocationAndHandlePermission(locLive : MutableLiveData<Location>, adLive: MutableLiveData<String>){
         addressLive = adLive
         locationLive = locLive
         handleLocationPermission()

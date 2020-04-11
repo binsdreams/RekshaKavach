@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/size_20dp"
+    tools:context=".ui.join.JoinPhoneActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/nameText"
+        android:layout_marginTop="@dimen/fab_margin"
+        style="@style/StyleTextView_18_wrap_bold"
+        android:text="Wecome Binil Thomas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/locationText"
+        style="@style/StyleTextView_18_wrap"
+        android:drawablePadding="@dimen/padding_10"
+        android:text="@string/yourLoc"
+        android:layout_marginTop="@dimen/size_20dp"
+        app:drawableStartCompat="@drawable/ic_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationText">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:minHeight="@dimen/size100"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_squire_bg"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/padding_10">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/StyleTextView_18_wrap_bold"
+                android:gravity="center"
+                android:text="@string/hotoSpots" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size100"
+            android:background="@drawable/bg_squire_bg"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/padding_10">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="center"
+                style="@style/StyleTextView_18_wrap_bold"
+                android:text="@string/isItTrue"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

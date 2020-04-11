@@ -1,9 +1,9 @@
 package com.rekshakavach.tracker.ui.join.di;
 
-import com.rekshakavach.tracker.data.api.PhoneLoginApi
+import com.rekshakavach.tracker.data.api.UserRegistrationApi
 import com.rekshakavach.tracker.data.cache.CacheManager
-import com.rekshakavach.tracker.data.repository.PhoneLoginRepoImpl
-import com.rekshakavach.tracker.domain.repo.PhoneLoginRepo
+import com.rekshakavach.tracker.data.repository.UserRegistrationRepoImpl
+import com.rekshakavach.tracker.domain.repo.UserRegistrationRepo
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -12,12 +12,12 @@ import retrofit2.Retrofit
 class JoinPhoneEntryModule {
 
     @Provides
-    internal fun provideGenerateOtpApi(retrofit: Retrofit): PhoneLoginApi {
-        return retrofit.create(PhoneLoginApi::class.java)
+    internal fun provideUserRegistrationApi(retrofit: Retrofit): UserRegistrationApi {
+        return retrofit.create(UserRegistrationApi::class.java)
     }
 
     @Provides
-    internal fun provideGenerateOtpRepo( api: PhoneLoginApi,cacheManager: CacheManager): PhoneLoginRepo {
-        return PhoneLoginRepoImpl(api,cacheManager)
+    internal fun provideUserRegistrationRepo(api: UserRegistrationApi, cacheManager: CacheManager): UserRegistrationRepo {
+        return UserRegistrationRepoImpl(api,cacheManager)
     }
 }

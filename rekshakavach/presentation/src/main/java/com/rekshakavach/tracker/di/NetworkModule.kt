@@ -51,6 +51,6 @@ class NetworkModule {
         return clientBuilder.build()
     }
     private fun getBaseURl():String{
-        return BuildConfig.CLIPY_BASE
+        return BuildConfig.BASEURL
     }
 }

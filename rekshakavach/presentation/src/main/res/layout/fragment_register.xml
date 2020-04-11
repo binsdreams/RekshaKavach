@@ -1,132 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/registerRoot"
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/fab_margin"
+    android:fillViewport="true"
     android:background="@color/white">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_marginTop="@dimen/size_30dp"
-        style="@style/StyleTextView_18_wrap_bold"
-        android:text="@string/signUp" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fullnameEt"
-        style="@style/StyleEditTextStandard"
+    <LinearLayout android:id="@+id/registerRoot"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:inputType="number"
-        android:maxLength="10"
-        android:hint="@string/fullname"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/dobEt"
-        style="@style/StyleEditTextStandard"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:inputType="textPassword"
-        android:hint="@string/dob"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:background="@drawable/bg_edittext">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/fab_margin"
+        android:background="@color/white" >
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/locationLabel"
-            style="@style/StyleTextView_17_wrap"
-            android:textColor="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:minHeight="@dimen/height_57"
-            android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:layout_marginEnd="@dimen/fab_margin"
-            android:text="@string/location"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginTop="@dimen/size_30dp"
+            style="@style/StyleTextView_18_wrap_bold"
+            android:text="@string/signUp" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0.5dp"
-            android:background="@color/color_gray_8"
-            app:layout_constraintBottom_toBottomOf="@+id/locationEt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/locationLabel" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/fullnameEt"
+            style="@style/StyleEditTextStandard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:inputType="textCapWords"
+            android:hint="@string/fullname"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/locationEt"
+            android:id="@+id/dobEt"
+            style="@style/StyleEditTextStandard"
+            android:layout_width="match_parent"
             android:gravity="center_vertical"
-            android:textColor="@color/colorPrimary"
-            style="@style/StyleTextView_17_wrap"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:hint="@string/dob"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:minHeight="@dimen/height_57"
-            android:text="@string/currentLocation"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:background="@drawable/bg_edittext">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/gender_Label"
+                style="@style/StyleTextView_17_wrap"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:minHeight="@dimen/height_57"
+                android:gravity="center_vertical"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:text="@string/gender"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/userEmail"
-        style="@style/StyleEditTextStandard"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/woman"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/genderSwitch"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_woman" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/passwordEt"
-        style="@style/StyleEditTextStandard"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:inputType="textPassword"
-        android:hint="@string/password"/>
+            <Switch
+                android:id="@+id/genderSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/man"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fab_margin">
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signUpBtn"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/man"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/gender_Label"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_man" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            style="@style/StyleButtonOutlined"
-            android:backgroundTint="@color/colorPrimary"
-            android:minHeight="@dimen/size84"
-            android:text="@string/signuup" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:background="@drawable/bg_edittext">
 
-        <ProgressBar
-            android:id="@+id/registerProgress"
-            android:visibility="invisible"
-            android:layout_centerInParent="true"
-            android:indeterminate="true"
-            android:indeterminateTintMode="src_atop"
-            android:indeterminateTint="@color/white"
-            style="?android:attr/progressBarStyleSmallInverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/locationLabel"
+                style="@style/StyleTextView_17_wrap"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:minHeight="@dimen/height_57"
+                android:gravity="center_vertical"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:text="@string/location"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/StyleTextView_18_wrap"
-        android:text="@string/haveAccount"
-        android:layout_marginTop="@dimen/size_30dp"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:background="@color/color_gray_8"
+                app:layout_constraintBottom_toBottomOf="@+id/locationEt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/locationLabel" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/navigateToLogin"
-        style="@style/StyleTextView_18_wrap_bold"
-        android:text="@string/signin"
-        android:layout_marginTop="@dimen/padding_10"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/locationEt"
+                style="@style/StyleTextView_17_wrap"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/height_57"
+                android:text="@string/currentLocation"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/locationLabel"
+                app:layout_constraintVertical_bias="0.0" />
 
-</LinearLayout>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:checked="true"
+                app:layout_constraintEnd_toEndOf="@+id/locationEt"
+                app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/userEmail"
+            style="@style/StyleEditTextStandard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:inputType="textEmailAddress"
+            android:hint="@string/phone"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/passwordEt"
+            style="@style/StyleEditTextStandard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:inputType="textPassword"
+            android:hint="@string/password"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signUpBtn"
+                android:layout_width="match_parent"
+                style="@style/StyleButtonOutlined"
+                android:backgroundTint="@color/colorPrimary"
+                android:minHeight="@dimen/size84"
+                android:text="@string/signuup" />
+
+            <ProgressBar
+                android:id="@+id/registerProgress"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/white"
+                style="?android:attr/progressBarStyleSmallInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/StyleTextView_18_wrap"
+            android:text="@string/haveAccount"
+            android:layout_marginTop="@dimen/size_30dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/navigateToLogin"
+            style="@style/StyleTextView_18_wrap_bold"
+            android:text="@string/signin"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginBottom="@dimen/size100"/>
+
+    </LinearLayout>
+</ScrollView>

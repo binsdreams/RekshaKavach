@@ -2,17 +2,18 @@ package com.rekshakavach.tracker.ui.join
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.rekshakavach.tracker.R
 import com.rekshakavach.tracker.common.showSnackBar
 import com.rekshakavach.tracker.di.vm.ViewModelProviderFactory
-import com.rekshakavach.tracker.domain.entity.DataEntity
+import com.rekshakavach.tracker.ui.home.HomeActivty
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
@@ -22,6 +23,8 @@ class LoginFragment : DaggerFragment(){
     private lateinit var joinViewModel: JoinViewModel
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
+    private var locationLive = MutableLiveData<Location>()
+    private var addressLive = MutableLiveData<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,18 +38,13 @@ class LoginFragment : DaggerFragment(){
             var phone = phoneNumberEntryField.text.toString()
             var password = passwordEt.text.toString()
             if (phone.isNullOrEmpty() or (phone.length < 9)) {
-                loginRoot.showSnackBar(getString(R.string.errorPhone),
-                    R.color.snack_red
-                )
+                loginRoot.showSnackBar(getString(R.string.errorPhone), R.color.snack_red)
             } else if (password.isNullOrEmpty()) {
-                loginRoot.showSnackBar(getString(R.string.error_password),
-                    R.color.snack_red
-                )
+                loginRoot.showSnackBar(getString(R.string.error_password), R.color.snack_red)
             } else {
                 signinBtn.isEnabled = false
                 loginProgress.visibility = View.VISIBLE
                 signinBtn.text = ""
-//                joinViewModel.generateOtp(country, phone)
             }
         }
 
@@ -59,22 +57,9 @@ class LoginFragment : DaggerFragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         joinViewModel = ViewModelProvider(this, viewModelFactory).get(JoinViewModel::class.java)
-        joinViewModel.otpResponseLive.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is DataEntity.SUCCESS ->{
-
-                }
-                is DataEntity.ERROR ->{
-                    var error = it.error.message?:getString(R.string.sometingWentWrong)
-                    loginRoot.showSnackBar(error,R.color.snack_red)
-                }
-            }
-            dismissProgress()
-        })
-
         splashRoot.postDelayed({
             if(joinViewModel.isUserLoggedIn()) {
-                //todo
+                startActivity(HomeActivty.getIntent(context!!))
             }else{
                 splashRoot.animate()
                     .alpha(0f)
@@ -82,12 +67,11 @@ class LoginFragment : DaggerFragment(){
                     .setListener(object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator) {
                             splashRoot.visibility = View.GONE
-                            (activity!! as JoinPhoneActivity).handleLocationPermission()
+                            (activity!! as JoinPhoneActivity).requestForLocationAndHandlePermission(locationLive,addressLive)
                         }
                     })
             }
-        },1000
-        )
+        },1000)
     }
 
     private fun dismissProgress(){

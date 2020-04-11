@@ -17,10 +17,13 @@
     <string name="errorPhone">invalid phone number!</string>
     <string name="error_password">invalid password!</string>
 
+    <string name="allfileds_mandet">All fields are required!</string>
+
     <string name="signUp">Sign up</string>
     <string name="fullname">Your Full Name</string>
     <string name="dob">Date of Birth</string>
     <string name="location">Location</string>
+    <string name="gender">Gender</string>
     <string name="currentLocation">Use current location?</string>
     <string name="email">Email</string>
     <string name="signuup">Sign up →</string>
@@ -39,5 +42,10 @@
 
     <string name="no_geocoder_available">No geocoder available</string>
     <string name="no_location_data_provided">No location data provided</string>
+
+    <string name="yourLoc">You are in</string>
+
+    <string name="hotoSpots">Corona \nHotspots</string>
+    <string name="isItTrue">Is this \nTrue?</string>
 
 </resources>

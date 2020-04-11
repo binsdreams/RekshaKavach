@@ -43,13 +43,13 @@ android {
         staging {
             dimension "general"
             applicationIdSuffix ".staging"
-            buildConfigField 'String', 'CLIPY_BASE', CLIPY_UAT
+            buildConfigField 'String', 'BASEURL', BASEURL
         }
 
         production {
             dimension "general"
             applicationIdSuffix ".staging"
-            buildConfigField 'String', 'CLIPY_BASE', CLIPY_UAT
+            buildConfigField 'String', 'BASEURL', BASEURL
         }
     }
 }

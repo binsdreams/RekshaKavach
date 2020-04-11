@@ -1,10 +1,8 @@
 package com.rekshakavach.tracker.ui.join.di;
 
 import com.rekshakavach.tracker.di.scopes.FragmentScoped;
-import com.rekshakavach.tracker.ui.join.JoinPhoneActivity;
 import com.rekshakavach.tracker.ui.join.LoginFragment;
 import com.rekshakavach.tracker.ui.join.RegisterFragment;
-import com.rekshakavach.tracker.ui.join.UserDetailsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -36,11 +34,5 @@ public abstract class PhoneEntryFragmentModule {
             modules = { JoinPhoneViewModelModule.class, JoinPhoneEntryModule.class}
     )
     abstract RegisterFragment contributePhoneVerifyFragment();
-
-    @FragmentScoped
-    @ContributesAndroidInjector(
-            modules = { JoinPhoneViewModelModule.class, JoinPhoneEntryModule.class}
-    )
-    abstract UserDetailsFragment contributeUserDetailsFragment();
 
 }

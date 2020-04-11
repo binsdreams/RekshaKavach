@@ -30,6 +30,8 @@
     <dimen name="size137">137dp</dimen>
     <dimen name="size84">84dp</dimen>
     <dimen name="size81">81dp</dimen>
+    <dimen name="size8">8dp</dimen>
+
 
     <dimen name="textSize">10sp</dimen>
     <dimen name="textSizesubTitle">12sp</dimen>

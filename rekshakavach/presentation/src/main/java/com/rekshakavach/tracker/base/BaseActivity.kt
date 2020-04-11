@@ -7,6 +7,9 @@ import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.ResultReceiver
 import android.provider.Settings
 import android.util.Log
 import android.view.View
@@ -18,6 +21,8 @@ import com.rekshakavach.tracker.common.LocationUtils
 import com.rekshakavach.tracker.common.showSnackBar
 import com.rekshakavach.tracker.ui.join.permissions.LocationEnableFragment
 import com.rekshakavach.tracker.ui.join.permissions.LocationPermissionFragment
+import com.rekshakavach.tracker.ui.location.Constants
+import com.rekshakavach.tracker.ui.location.FetchAddressIntentService
 import kotlinx.android.synthetic.main.layout_action.*
 
 
@@ -25,6 +30,8 @@ open class BaseActivity : AppCompatActivity() {
     private lateinit var mLocationCallback :LocationCallback
     private var lastLocation: Location? = null
     private var fusedLocationClient: FusedLocationProviderClient? = null
+    private lateinit var resultReceiver: AddressResultReceiver
+    private var addressOutput :String?= null
 
     fun initAction(backBtn: Boolean, titleResId: Int, cartBtn: Boolean) {
         if (titleResId != 0) {
@@ -38,6 +45,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun handleLocationPermission(){
+        resultReceiver = AddressResultReceiver(Handler())
         if(LocationUtils.isLocationPermissionDeniedForever(this)){
             val fragment = LocationPermissionFragment.getInstance()
             fragment.setPermissionCallback{
@@ -91,11 +99,23 @@ open class BaseActivity : AppCompatActivity() {
                 window.decorView.showSnackBar(getString(R.string.no_geocoder_available),R.color.snack_red)
                 return@OnSuccessListener
             }
-//            if(addressRequested)startIntentService()
+            startIntentService()
         })?.addOnFailureListener(this) { e -> Log.w("GEO", "getLastLocation:onFailure", e) }
     }
 
+    private fun startIntentService() {
+        val intent = Intent(this, FetchAddressIntentService::class.java).apply {
+            putExtra(Constants.RECEIVER, resultReceiver)
+            putExtra(Constants.LOCATION_DATA_EXTRA, lastLocation)
+        }
+        startService(intent)
+    }
+
      open fun onLocationReceived(location: Location?){
+
+    }
+
+    open fun displayAddressOutput(fullAddrss: String?){
 
     }
 
@@ -113,6 +133,15 @@ open class BaseActivity : AppCompatActivity() {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     handleLocationPermission()
                 }
+            }
+        }
+    }
+
+    private inner class AddressResultReceiver internal constructor(handler: Handler) : ResultReceiver(handler) {
+        override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
+            addressOutput = resultData.getString(Constants.RESULT_DATA_KEY)?:""
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                displayAddressOutput(addressOutput)
             }
         }
     }
