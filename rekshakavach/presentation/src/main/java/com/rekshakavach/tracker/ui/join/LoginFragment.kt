@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.rekshakavach.tracker.R
 import com.rekshakavach.tracker.common.showSnackBar
 import com.rekshakavach.tracker.di.vm.ViewModelProviderFactory
-import com.rekshakavach.tracker.ui.home.HomeActivty
+import com.rekshakavach.tracker.ui.home.HomeActivity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
@@ -59,7 +59,7 @@ class LoginFragment : DaggerFragment(){
         joinViewModel = ViewModelProvider(this, viewModelFactory).get(JoinViewModel::class.java)
         splashRoot.postDelayed({
             if(joinViewModel.isUserLoggedIn()) {
-                startActivity(HomeActivty.getIntent(context!!))
+                startActivity(HomeActivity.getIntent(context!!))
             }else{
                 splashRoot.animate()
                     .alpha(0f)

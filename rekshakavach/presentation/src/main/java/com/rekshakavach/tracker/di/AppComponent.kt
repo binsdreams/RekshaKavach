@@ -3,6 +3,7 @@ package com.rekshakavach.tracker.di
 import com.rekshakavach.tracker.RKTApplication
 import com.rekshakavach.tracker.di.scopes.AppScoped
 import com.rekshakavach.tracker.di.vm.ViewModelFactoryModule
+import com.rekshakavach.tracker.ui.home.di.HomeActivityModule
 import com.rekshakavach.tracker.ui.join.di.PhoneEntryFragmentModule
 import dagger.BindsInstance
 import dagger.Component
@@ -30,7 +31,8 @@ import javax.inject.Singleton
     NetworkModule::class,
     MainModule::class,
     ViewModelFactoryModule::class,
-    PhoneEntryFragmentModule::class
+    PhoneEntryFragmentModule::class,
+    HomeActivityModule::class
 ])
 interface AppComponent : AndroidInjector<RKTApplication> {
 

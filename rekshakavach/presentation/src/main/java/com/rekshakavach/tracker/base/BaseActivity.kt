@@ -32,7 +32,7 @@ open class BaseActivity : AppCompatActivity() {
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private lateinit var resultReceiver: AddressResultReceiver
     private var addressOutput :String?= null
-
+    var needAddress = true
     fun initAction(backBtn: Boolean, titleResId: Int, cartBtn: Boolean) {
         if (titleResId != 0) {
             action_title?.setText(titleResId)
@@ -73,7 +73,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private fun requestLocation(){
         var locationRequest = LocationRequest();
-        locationRequest.interval = 60000;
+        locationRequest.interval = 30000;
         locationRequest.fastestInterval = 5000
         locationRequest.priority = LocationRequest.PRIORITY_LOW_POWER
         mLocationCallback =  object : LocationCallback() {
@@ -99,7 +99,7 @@ open class BaseActivity : AppCompatActivity() {
                 window.decorView.showSnackBar(getString(R.string.no_geocoder_available),R.color.snack_red)
                 return@OnSuccessListener
             }
-            startIntentService()
+           if(needAddress) startIntentService()
         })?.addOnFailureListener(this) { e -> Log.w("GEO", "getLastLocation:onFailure", e) }
     }
 

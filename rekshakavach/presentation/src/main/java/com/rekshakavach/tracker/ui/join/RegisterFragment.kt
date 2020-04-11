@@ -16,7 +16,7 @@ import com.rekshakavach.tracker.data.common.parseDateToServerFormat
 import com.rekshakavach.tracker.di.vm.ViewModelProviderFactory
 import com.rekshakavach.tracker.domain.entity.DataEntity
 import com.rekshakavach.tracker.domain.entity.UserInfoEntity
-import com.rekshakavach.tracker.ui.home.HomeActivty
+import com.rekshakavach.tracker.ui.home.HomeActivity
 import com.rekshakavach.tracker.ui.picker.DatePickerFragment
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -81,7 +81,7 @@ class RegisterFragment : DaggerFragment(){
             dismissProgress()
             when(it){
                 is DataEntity.SUCCESS ->{
-                    startActivity(HomeActivty.getIntent(context!!))
+                    startActivity(HomeActivity.getIntent(context!!))
                 }
                 is DataEntity.ERROR ->{
                     var error = it.error.message?:getString(R.string.sometingWentWrong)
