@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#20246C</color>
+    <color name="colorPrimaryDark">#20246C</color>
+    <color name="colorAccent">#20246C</color>
+    <color name="offwhite">#EDEDF1</color>
+    <color name="divider_color">#B9B9BB</color>
+    <color name="color_drakgray">#5C5C5C</color>
+    <color name="color_lightgray">#9A9A9A</color>
+    <color name="white">#FFF</color>
+    <color name="color_gray_8">#888888</color>
+    <color name="color_greenOffer">#00B939</color>
+    <color name="btn_yellow">#FFD800</color>
+
+
+    <color name="text_77_blck">#777777</color>
+    <color name="btn_border">#707070</color>
+    <color name="textColorhint">#AAAAAA</color>
+    <color name="snack_red">#800000</color>
+    <color name="snack_green">#006400</color>
+
+</resources>

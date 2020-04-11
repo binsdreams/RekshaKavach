@@ -1,0 +1,194 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Appearance.customTabtext" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="StyleButtonOutlined" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">312dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="strokeColor">@color/btn_border</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/height_57</item>
+        <item name="android:textSize">@dimen/text_size_17</item>
+    </style>
+
+    <style name="OtpEditTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:ems">1</item>
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">@dimen/text_size_26</item>
+    </style>
+
+    <style name="StyleEditTextStandard">
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:minWidth">312dp</item>
+        <item name="android:minHeight">@dimen/size_50dp</item>
+        <item name="android:paddingStart">@dimen/fab_margin</item>
+        <item name="android:paddingEnd">@dimen/fab_margin</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_17</item>
+    </style>
+
+    <style name="StyleEditTextNormal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:textColorHint">@color/color_lightgray</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="StyleTextView_43_ow_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_43</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="StyleTextView_18_wrap_bold">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StyleTextView_18_wrap" parent="StyleTextView_18_wrap_bold">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+    <style name="StyleTextView_17_wrap" parent="StyleTextView_18_wrap">
+        <item name="android:textSize">@dimen/text_size_17</item>
+    </style>
+
+
+    <style name="StyleTextView_14_ow_wrap" parent="StyleTextView_43_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="StyleTextView_14_white_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="StyleTextView_14_blk_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="StyleTextView_19_blk_wrap" parent="StyleTextView_14_blk_wrap">
+        <item name="android:textSize">@dimen/text_size_19</item>
+    </style>
+
+    <style name="StyleTextView_12_ow_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <style name="StyleTextView_12_blk_wrap" parent="StyleTextView_14_blk_wrap">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <style name="StyleTextView_10_blk_wrap" parent="StyleTextView_14_blk_wrap">
+        <item name="android:textSize">@dimen/text_size_10</item>
+    </style>
+
+    <style name="StyleTextView_12_77blk_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/text_77_blck</item>
+    </style>
+
+    <style name="StyleTextView_22_blk_wrap" parent="StyleTextView_14_blk_wrap">
+        <item name="android:textSize">@dimen/text_size_22</item>
+    </style>
+
+    <style name="StyleTextView_22_ow_wrap" parent="StyleTextView_22_blk_wrap">
+        <item name="android:textColor">@color/offwhite</item>
+    </style>
+
+    <style name="StyleTextView_18_ow_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_18</item>
+    </style>
+
+    <style name="StyleTextView_14_dg_wrap" parent="StyleTextView_14_blk_wrap">
+        <item name="android:textColor">@color/color_drakgray</item>
+    </style>
+
+    <style name="StyleTextView_16_dg_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/color_drakgray</item>
+    </style>
+
+    <style name="StyleTextView_10_dg_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/color_drakgray</item>
+    </style>
+
+    <style name="StyleTextView_13_dg_wrap" parent="StyleTextView_10_dg_wrap">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+
+    <style name="StyleTextView_16_blk_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="StyleTextView_18_white_wrap" parent="StyleTextView_14_ow_wrap">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="StyleTextView_22_white_wrap" parent="StyleTextView_18_white_wrap">
+        <item name="android:textSize">@dimen/text_size_22</item>
+    </style>
+
+    <style name="yourDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+
+        <item name="android:colorAccent">#F00</item>
+        <item name="android:colorPrimary">#0F0</item>
+        <item name="android:colorPrimaryDark">#00F</item>
+    </style>
+
+    <style name="categoriesTabText" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/color_drakgray</item>
+    </style>
+
+    <style name="categoriesTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/categoriesTabText</item>
+        <item name="tabSelectedTextColor">@color/btn_yellow</item>
+    </style>
+
+</resources>

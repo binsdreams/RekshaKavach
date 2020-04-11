@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loginRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingEnd="@dimen/fab_margin">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/StyleTextView_18_wrap_bold"
+            android:text="@string/signInToCont" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/phoneNumberEntryField"
+            style="@style/StyleEditTextStandard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:inputType="number"
+            android:maxLength="10"
+            android:hint="@string/Phone"/>
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/passwordEt"
+            style="@style/StyleEditTextStandard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:inputType="textPassword"
+            android:hint="@string/password"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signinBtn"
+                android:layout_width="match_parent"
+                style="@style/StyleButtonOutlined"
+                android:backgroundTint="@color/colorPrimary"
+                android:minHeight="@dimen/size84"
+                android:text="@string/signin" />
+
+            <ProgressBar
+                android:id="@+id/loginProgress"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/white"
+                style="?android:attr/progressBarStyleSmallInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/StyleTextView_18_wrap"
+            android:text="@string/donthaveanaccount"
+            android:layout_marginTop="@dimen/size_30dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/navigateToRegister"
+            style="@style/StyleTextView_18_wrap_bold"
+            android:text="@string/singforfree"
+            android:layout_marginTop="@dimen/padding_10"/>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/splashRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/app_icon_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

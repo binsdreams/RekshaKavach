@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">CRKT</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyCBSo14poHZcrNJ_L5MYGQa_KN9zAfikb4
+    </string>
+
+    <string name="sometingWentWrong">something went wrong! please try again</string>
+
+    <string name="signInToCont">Sign in to continue</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="Phone">Phone</string>
+    <string name="signin">Sign in →</string>
+    <string name="donthaveanaccount">Don’t have an account?</string>
+    <string name="singforfree">Sign up for free →</string>
+    <string name="errorPhone">invalid phone number!</string>
+    <string name="error_password">invalid password!</string>
+
+    <string name="signUp">Sign up</string>
+    <string name="fullname">Your Full Name</string>
+    <string name="dob">Date of Birth</string>
+    <string name="location">Location</string>
+    <string name="currentLocation">Use current location?</string>
+    <string name="email">Email</string>
+    <string name="signuup">Sign up →</string>
+    <string name="haveAccount"> Already have an account?</string>
+
+</resources>

@@ -1,0 +1,112 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    flavorDimensions "general"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+        applicationId "com.rekshakavach.tracker"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    productFlavors {
+        staging {
+            dimension "general"
+            applicationIdSuffix ".staging"
+            buildConfigField 'String', 'CLIPY_BASE', CLIPY_UAT
+        }
+
+        production {
+            dimension "general"
+            applicationIdSuffix ".staging"
+            buildConfigField 'String', 'CLIPY_BASE', CLIPY_UAT
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.appCompat
+    implementation rootProject.ext.kotlinStdLib
+    implementation rootProject.ext.ktxCore
+    implementation rootProject.ext.appCompat
+    implementation rootProject.ext.legacySupport
+    implementation rootProject.ext.constraintLayout
+    implementation rootProject.ext.recyclerView
+    implementation rootProject.ext.material
+    implementation rootProject.ext.retrofit
+    implementation rootProject.ext.retrofitGsonConverter
+    implementation rootProject.ext.retrofitCoroutinesConverter
+    implementation rootProject.ext.retrofitLoggingInterceptors
+    implementation rootProject.ext.lifecycleExtensions
+    implementation rootProject.ext.glide
+    implementation(rootProject.ext.glideOkhttp) {
+        exclude group: 'glide-parent'
+    }
+    implementation rootProject.ext.legacySupport
+    implementation rootProject.ext.shimmer
+
+    //coroutines
+    implementation rootProject.ext.coroutines
+    implementation rootProject.ext.coroutinesAndroid
+    //navigation
+    implementation rootProject.ext.navigationFragment
+    implementation rootProject.ext.navigationui
+    implementation rootProject.ext.navigationFragmentKtx
+    implementation rootProject.ext.navigationuiKtx
+
+    implementation rootProject.ext.dagger
+    implementation rootProject.ext.daggerLib
+    implementation rootProject.ext.dagarSupport
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt rootProject.ext.daggerCompilerKt
+    kapt rootProject.ext.daggerAnotationProcesserKt
+
+    implementation rootProject.ext.cardView
+    implementation rootProject.ext.viewpager
+    implementation rootProject.ext.googleMap
+    implementation rootProject.ext.locationGplayServices
+    implementation rootProject.ext.locationGplayPlaces
+
+    implementation 'org.apache.commons:commons-lang3:3.4'
+
+    implementation project(':data')
+    implementation project(':domain')
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:support-v4:28.0.0'
+}
+repositories {
+    mavenCentral()
+}
