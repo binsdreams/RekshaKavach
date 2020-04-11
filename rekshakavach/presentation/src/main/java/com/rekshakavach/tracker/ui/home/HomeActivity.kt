@@ -35,6 +35,7 @@ class HomeActivity : DaggerBaseActivity() {
         androidId = Secure.getString(this.contentResolver, Secure.ANDROID_ID)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
         handleLocationPermission()
+        nameText.text = "Welcome ".plus(homeViewModel.getUserName())
     }
 
     override fun  onLocationReceived(location: Location?){

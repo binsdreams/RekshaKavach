@@ -26,6 +26,7 @@ class UserLocationRepoImpl(private val api: UserLocationApi, private val cacheMa
                 reqBodyParams["lng"] = lng.toString()
                 reqBodyParams["timestamp"] = System.currentTimeMillis().toString()
                 api.locationUpdate(reqBodyParams).await()
+                send(DataEntity.ERROR(ErrorEntity("Succcess")))
             } catch (e: Exception) {
                 send(DataEntity.ERROR(ErrorEntity(e.message)))
             }

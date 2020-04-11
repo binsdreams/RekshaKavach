@@ -27,5 +27,8 @@ class HomeViewModel @Inject constructor(private val userRepos :UserLocationRepo)
         }
     }
 
+    fun getUserName():String?{
+        return userRepos.getUser()?.name
+    }
 
 }
