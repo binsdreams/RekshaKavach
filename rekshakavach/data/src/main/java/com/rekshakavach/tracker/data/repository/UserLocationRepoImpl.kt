@@ -17,8 +17,9 @@ class UserLocationRepoImpl(private val api: UserLocationApi, private val cacheMa
         return scope.produce {
             try {
                 var reqBodyParams = mutableMapOf<String,String>()
-                reqBodyParams["user_id"] = deviceId
-                reqBodyParams["device_id"] = deviceId?:""
+                var user = getUser()
+                reqBodyParams["user_id"] = user.user_id?:deviceId
+                reqBodyParams["device_id"] = deviceId
                 reqBodyParams["lat"] = lat.toString()
                 reqBodyParams["lng"] = lng.toString()
                 reqBodyParams["timestamp"] = System.currentTimeMillis().toString()

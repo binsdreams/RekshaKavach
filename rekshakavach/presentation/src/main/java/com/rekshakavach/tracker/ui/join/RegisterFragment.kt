@@ -82,6 +82,7 @@ class RegisterFragment : DaggerFragment(){
             when(it){
                 is DataEntity.SUCCESS ->{
                     startActivity(HomeActivity.getIntent(context!!))
+                    activity!!.finish()
                 }
                 is DataEntity.ERROR ->{
                     var error = it.error.message?:getString(R.string.sometingWentWrong)

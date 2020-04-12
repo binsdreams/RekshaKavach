@@ -11,6 +11,8 @@ data class UserDetailsResponse(
     @SerializedName("sex") var sex: String? = "",
     @SerializedName("address") var address: String? = "",
     @SerializedName("covid_band") var covid_band: String? = "",
+    @SerializedName("score") var score: Double? = 0.0,
+    @SerializedName("hash_code") var hash_code: String? = "",
     @SerializedName("code") var code: Int? = 0,
     @SerializedName("message") var message: String? = "",
     @SerializedName("errors") var errors: Array<String?> = emptyArray()

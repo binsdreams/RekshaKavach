@@ -38,11 +38,15 @@
             android:label="@string/app_name">
         </activity>
 
+        <activity
+            android:name=".ui.mark.MarkCovidActivity"
+            android:label="@string/app_name">
+        </activity>
+
+
         <service
             android:name=".ui.location.FetchAddressIntentService"
             android:exported="false" />
-
-
         <service
             android:name=".ui.service.LocationScheduler"
             android:enabled="true"

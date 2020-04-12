@@ -8,5 +8,6 @@ import retrofit2.http.POST
 interface UserRegistrationApi {
 
     @POST("user")
-    fun registerAsync(@Body reqBodyParams :Map<String, String>): Deferred<UserDetailsResponse>
+    fun registerAsync(@Body reqBodyParams: Map<String, String>): Deferred<UserDetailsResponse>
+
 }

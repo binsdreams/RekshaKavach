@@ -1,10 +1,10 @@
-package com.rekshakavach.tracker.ui.home
+package com.rekshakavach.tracker.ui.mark
 
 import androidx.lifecycle.MutableLiveData
 import com.rekshakavach.tracker.base.BaseViewModel
 import com.rekshakavach.tracker.domain.entity.DataEntity
-import com.rekshakavach.tracker.domain.entity.UserInfoEntity
-import com.rekshakavach.tracker.domain.repo.ProfileRepo
+import com.rekshakavach.tracker.domain.entity.UserCovidInfoEntity
+import com.rekshakavach.tracker.domain.repo.UserCovidInfoRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.consume
@@ -14,9 +14,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val userRepos :ProfileRepo): BaseViewModel() {
+class MArkCovidViewModel @Inject constructor(private val userRepos :UserCovidInfoRepo): BaseViewModel() {
 
-    var userInfoLive = MutableLiveData<DataEntity<UserInfoEntity>>()
+    var covidUpdateLive = MutableLiveData<DataEntity<UserCovidInfoEntity>>()
     private val DATE_FORMAT_PATTERN = "dd-MM-yyyy"
     private lateinit var dischargeSelected : Date
     private var dischargeDateStr = ""
@@ -24,12 +24,12 @@ class HomeViewModel @Inject constructor(private val userRepos :ProfileRepo): Bas
     private var diagnoseDateStr = ""
     private  var dateFormat = SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.US)
 
-    fun getUserProfile() {
+    fun updateCovidAsync(user :UserCovidInfoEntity) {
         launch {
-            userRepos.getUserProfileAsync(CoroutineScope(coroutineContext)).consume {
+            userRepos.updateCovidAsync(CoroutineScope(coroutineContext),user).consume {
                 var response = this.receive()
                 withContext(Dispatchers.Main) {
-                    userInfoLive.postValue(response)
+                    covidUpdateLive.postValue(response)
                 }
             }
         }
@@ -41,10 +41,6 @@ class HomeViewModel @Inject constructor(private val userRepos :ProfileRepo): Bas
 
     fun getUserId():String?{
         return userRepos.getUser()?.user_id
-    }
-
-    fun getUser():UserInfoEntity?{
-        return userRepos.getUser()
     }
 
     fun initToday(){

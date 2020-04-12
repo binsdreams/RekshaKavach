@@ -14,6 +14,8 @@ class UserResponseMapper {
             registered_date =response.registered_date,
             sex =response.sex,
             address =response.address,
-            covid_band =response.covid_band
+            covid_band =response.covid_band,
+            score = response.score,
+            hash_code = response.hash_code
         )
 }

@@ -12,7 +12,9 @@ data class UserInfoEntity(
     var registered_date: String? = "",
     var sex: String? = "",
     var address: String? = "",
-    var covid_band: String? = ""
+    var covid_band: String? = "",
+    var score: Double? = 0.0,
+    var hash_code: String? = ""
 ): Parcelable {
 
     @SuppressLint("NewApi")
@@ -24,6 +26,8 @@ data class UserInfoEntity(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
+        parcel.readDouble(),
         parcel.readString()
     )
 
@@ -37,6 +41,8 @@ data class UserInfoEntity(
         parcel.writeString(sex)
         parcel.writeString(covid_band)
         parcel.writeString(address)
+        parcel.writeDouble(score?:0.0)
+        parcel.writeString(hash_code)
     }
 
     override fun describeContents(): Int {

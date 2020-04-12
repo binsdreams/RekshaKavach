@@ -18,5 +18,6 @@
     <color name="textColorhint">#AAAAAA</color>
     <color name="snack_red">#800000</color>
     <color name="snack_green">#006400</color>
+    <color name="amber">#FFBF00</color>
 
 </resources>

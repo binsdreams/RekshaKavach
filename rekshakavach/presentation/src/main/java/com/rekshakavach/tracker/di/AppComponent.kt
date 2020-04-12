@@ -5,6 +5,7 @@ import com.rekshakavach.tracker.di.scopes.AppScoped
 import com.rekshakavach.tracker.di.vm.ViewModelFactoryModule
 import com.rekshakavach.tracker.ui.home.di.HomeActivityModule
 import com.rekshakavach.tracker.ui.join.di.PhoneEntryFragmentModule
+import com.rekshakavach.tracker.ui.mark.di.MarkCovidActivityModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -32,13 +33,13 @@ import javax.inject.Singleton
     MainModule::class,
     ViewModelFactoryModule::class,
     PhoneEntryFragmentModule::class,
-    HomeActivityModule::class
+    HomeActivityModule::class,
+    MarkCovidActivityModule::class
 ])
 interface AppComponent : AndroidInjector<RKTApplication> {
 
     @Component.Builder
     interface Builder {
-
         /**
          * [BindsInstance] annotation is used for, if you want to bind particular object or instance
          * of an object through the time of component construction

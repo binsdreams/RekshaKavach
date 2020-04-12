@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/homeRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -31,164 +32,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
-    <ScrollView
-        android:layout_marginTop="@dimen/height_57"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        android:background="@drawable/bg_squire_bg"
-        android:minHeight="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/qrCodeImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20dp"
+        android:minWidth="400dp"
+        android:minHeight="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationText">
+        app:layout_constraintTop_toBottomOf="@+id/locationText"
+        app:srcCompat="@drawable/ic_covid" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="@dimen/fab_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_covid_small" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/StyleTextView_17_wrap_bild"
-                android:layout_width="0dp"
-                android:text="@string/isItTrue"
-                android:padding="@dimen/fab_margin"
-                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/padding_small"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    android:background="@drawable/bg_edittext">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/testREsultLabel"
-                        style="@style/StyleTextView_17_wrap"
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="@dimen/fab_margin"
-                        android:layout_marginEnd="@dimen/fab_margin"
-                        android:gravity="center_vertical"
-                        android:minHeight="@dimen/height_57"
-                        android:text="@string/areyoytestedPositive"
-                        android:textColor="@color/colorPrimary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Switch
-                        android:id="@+id/testSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/testREsultLabel"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/positive_declaration_date"
-                    style="@style/StyleEditTextStandard"
-                    android:layout_width="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    android:hint="@string/positive_declaration_date" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    android:background="@drawable/bg_edittext">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/isDiscahrgedLabel"
-                        style="@style/StyleTextView_17_wrap"
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="@dimen/fab_margin"
-                        android:layout_marginEnd="@dimen/fab_margin"
-                        android:gravity="center_vertical"
-                        android:minHeight="@dimen/height_57"
-                        android:text="@string/is_discharged"
-                        android:textColor="@color/colorPrimary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Switch
-                        android:id="@+id/isDiscahrgedSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/isDiscahrgedLabel"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/discharge_date"
-                    style="@style/StyleEditTextStandard"
-                    android:layout_width="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    android:hint="@string/discharge_date" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_40dp">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/covidBtn"
-                        style="@style/StyleButtonOutlined"
-                        android:layout_width="match_parent"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:minHeight="@dimen/size84"
-                        android:text="@string/save" />
-
-                    <ProgressBar
-                        android:id="@+id/covidProgress"
-                        style="?android:attr/progressBarStyleSmallInverse"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:indeterminate="true"
-                        android:indeterminateTint="@color/white"
-                        android:indeterminateTintMode="src_atop"
-                        android:visibility="invisible" />
-                </RelativeLayout>
-
-            </LinearLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </ScrollView>
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/markMyself"
+        style="@style/StyleButtonOutlined"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:minHeight="@dimen/size84"
+        android:text="@string/markMyself"
+        app:layout_constraintTop_toBottomOf="@+id/qrCodeImageView"
+        tools:layout_editor_absoluteX="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

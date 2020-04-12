@@ -60,6 +60,7 @@ class LoginFragment : DaggerFragment(){
         splashRoot.postDelayed({
             if(joinViewModel.isUserLoggedIn()) {
                 startActivity(HomeActivity.getIntent(context!!))
+                activity!!.finish()
             }else{
                 splashRoot.animate()
                     .alpha(0f)

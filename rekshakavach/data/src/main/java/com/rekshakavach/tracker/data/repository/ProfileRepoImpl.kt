@@ -1,32 +1,26 @@
 package com.rekshakavach.tracker.data.repository
 
-import com.rekshakavach.tracker.data.api.UserRegistrationApi
+import com.rekshakavach.tracker.data.api.ProfileApi
 import com.rekshakavach.tracker.data.cache.CacheManager
 import com.rekshakavach.tracker.data.entities.UserDetailsResponse
 import com.rekshakavach.tracker.data.mappers.UserResponseMapper
 import com.rekshakavach.tracker.domain.entity.DataEntity
 import com.rekshakavach.tracker.domain.entity.ErrorEntity
 import com.rekshakavach.tracker.domain.entity.UserInfoEntity
-import com.rekshakavach.tracker.domain.repo.UserRegistrationRepo
+import com.rekshakavach.tracker.domain.repo.ProfileRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 
-class UserRegistrationRepoImpl(private val api: UserRegistrationApi, private val cacheManager: CacheManager) : UserRegistrationRepo {
+class ProfileRepoImpl(private val api: ProfileApi, private val cacheManager: CacheManager) : ProfileRepo {
 
     private var mapper = UserResponseMapper()
-    override suspend fun register(scope: CoroutineScope,user : UserInfoEntity): ReceiveChannel<DataEntity<UserInfoEntity>>{
+    override suspend fun  getUserProfileAsync(scope: CoroutineScope): ReceiveChannel<DataEntity<UserInfoEntity>>{
 
         return scope.produce {
             try {
-                var reqBodyParams = mutableMapOf<String,String>()
-                reqBodyParams["name"] = user.name.toString()
-                reqBodyParams["address"] = user.address?:""
-                reqBodyParams["sex"] = user.sex?:"M"
-                reqBodyParams["phone"] =user.phone.toString()
-                reqBodyParams["registered_date"] = user.registered_date?:""
-                reqBodyParams["dob"] = user.dob?:""
-                val response : UserDetailsResponse = api.registerAsync(reqBodyParams).await()
+                var userId = getUser().user_id?:""
+                val response : UserDetailsResponse = api.getUserProfileAsync(userId).await()
                 if(response.message?.isNullOrEmpty() == false || response.errors?.size > 0){
                     send(DataEntity.ERROR(ErrorEntity("Failure")))
                 }else{
@@ -41,7 +35,7 @@ class UserRegistrationRepoImpl(private val api: UserRegistrationApi, private val
         }
     }
 
-    override fun getToken(): String {
-        return cacheManager.getAccessKey()
+    override fun getUser(): UserInfoEntity {
+        return cacheManager.getProfile()
     }
 }

@@ -2,25 +2,30 @@ package com.rekshakavach.tracker.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
 import com.rekshakavach.tracker.R
 import com.rekshakavach.tracker.base.DaggerBaseActivity
-import com.rekshakavach.tracker.data.common.parseDateToServerFormat
+import com.rekshakavach.tracker.common.showSnackBar
 import com.rekshakavach.tracker.di.vm.ViewModelProviderFactory
-import com.rekshakavach.tracker.domain.entity.UserCovidInfoEntity
-import com.rekshakavach.tracker.ui.picker.DatePickerFragment
+import com.rekshakavach.tracker.domain.entity.DataEntity
+import com.rekshakavach.tracker.domain.entity.UserInfoEntity
+import com.rekshakavach.tracker.ui.mark.MarkCovidActivity
 import com.rekshakavach.tracker.ui.service.Actions
 import com.rekshakavach.tracker.ui.service.LocationScheduler
 import com.rekshakavach.tracker.ui.service.ServiceState
 import com.rekshakavach.tracker.ui.service.getServiceState
 import kotlinx.android.synthetic.main.activity_home.*
-import java.util.*
 import javax.inject.Inject
 
 
@@ -29,7 +34,6 @@ class HomeActivity : DaggerBaseActivity() {
     companion object{
         fun getIntent(context : Context) : Intent {
             var intent =  Intent(context, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             return intent
         }
     }
@@ -37,22 +41,21 @@ class HomeActivity : DaggerBaseActivity() {
     private lateinit var homeViewModel: HomeViewModel
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
-    private var isDischargeSelected = false;
-    private var isTestedPositive = false;
-    private var isDischarged = false;
-    private  var androidId :String =""
+    private var userInfoEntity :UserInfoEntity?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        androidId = Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
         homeViewModel.initToday()
+        userInfoEntity = homeViewModel.getUser()
         handleLocationPermission()
-        nameText.text = "Welcome ".plus(homeViewModel.getUserName())
         actionOnService(Actions.START)
-        initClicks()
-        listenForUpdate()
+        homeViewModel.getUserProfile()
+        listenForUSerInfo()
+        setClick()
+        nameText.text = "Welcome ".plus(homeViewModel.getUserName())
+        setImageBitmap(userInfoEntity?.hash_code?:"1586682688427")
     }
 
     override fun  onLocationReceived(location: Location?){
@@ -79,71 +82,61 @@ class HomeActivity : DaggerBaseActivity() {
         }
     }
 
-    private fun initClicks(){
-        testSwitch.setOnCheckedChangeListener { compoundButton, b ->
-            isTestedPositive = b
-        }
-
-        isDiscahrgedSwitch.setOnCheckedChangeListener { compoundButton, b ->
-            isDischarged = b
-        }
-        positive_declaration_date.setOnClickListener{
-            isDischargeSelected = false
-            showDatePicker(homeViewModel.getTestDate().time)
-        }
-
-        discharge_date.setOnClickListener{
-            isDischargeSelected = true
-            showDatePicker(homeViewModel.getDischargeDate().time)
-        }
-
-        covidBtn.setOnClickListener{
-            homeViewModel.updateCovidAsync(
-                UserCovidInfoEntity(
-                    user_id = androidId,
-                    discharge_date = parseDateToServerFormat(homeViewModel.getDischargeDate()),
-                    is_discharged = isDischarged,
-                    is_positive = isTestedPositive,
-                    positive_declaration_date = parseDateToServerFormat(homeViewModel.getTestDate())
-                )
-            )
+    private fun setClick(){
+        markMyself.setOnClickListener{
+            startActivity(MarkCovidActivity.getIntent(this))
         }
     }
 
-    private fun showDatePicker(milliseconds :Long){
-        val c = Calendar.getInstance()
-        c.timeInMillis = milliseconds
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-
-        DatePickerFragment().display(
-            manager = supportFragmentManager,
-            tag = "DIALOG_TAG",
-            calendar = Calendar.getInstance().apply { set(year, month, day) },
-            callback = object : DatePickerFragment.Callback {
-                override fun onDateSelected(calendar: Calendar) {
-                    if(isDischargeSelected){
-                        homeViewModel.setDischargeDate(calendar.time)
-                        discharge_date.text = homeViewModel.getDischargeDateStr()
-                    }else{
-                        homeViewModel.setDignoseDate(calendar.time)
-                        positive_declaration_date.text = homeViewModel.getTestDateStr()
-                    }
-
+    private fun setImageBitmap(content: String) {
+        val writer = QRCodeWriter()
+        try {
+            val bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512)
+            val width = bitMatrix.width
+            val height = bitMatrix.height
+            val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    bmp.setPixel(x, y, if (bitMatrix[x, y]) getColorTint(userInfoEntity?.covid_band) else Color.WHITE)
                 }
-            })
+            }
+            qrCodeImageView.setImageBitmap(bmp)
+        } catch (e: WriterException) {
+            e.printStackTrace()
+        }
     }
 
-
-    private fun listenForUpdate(){
-        homeViewModel.covidUpdateLive.observe(this, androidx.lifecycle.Observer {
-            dismissProgress()
+    private fun listenForUSerInfo(){
+        homeViewModel.userInfoLive.observe(this, Observer {
+            when(it){
+                is DataEntity.SUCCESS ->{
+                    userInfoEntity = it.data
+                    if(userInfoEntity?.hash_code.isNullOrEmpty()){
+                        setImageBitmap(userInfoEntity?.hash_code!!)
+                    }
+                }
+                is DataEntity.ERROR ->{
+                    var error = it.error.message?:getString(R.string.sometingWentWrong)
+                    homeRoot.showSnackBar(error,R.color.snack_red)
+                }
+            }
         })
     }
 
-    private fun dismissProgress(){
-        covidProgress.visibility = View.GONE
-        covidBtn.text = getString(R.string.save)
+    private fun getColorTint(colorCode : String?):Int{
+        var color =Color.BLACK
+       when(colorCode){
+           "GREEN" ->{
+               color = ContextCompat.getColor(this,R.color.snack_green)
+           }
+           "RED" ->{
+               color=  ContextCompat.getColor(this,R.color.snack_red)
+           }
+           "AMBER" ->{
+               color = ContextCompat.getColor(this,R.color.amber)
+           }
+       }
+        return color
     }
+
 }

@@ -53,6 +53,6 @@
     <string name="is_discharged">Are you Discharged?</string>
     <string name="discharge_date">Date of Discharge?</string>
     <string name="save">Save</string>
-
+    <string name="markMyself">Mark my self →</string>
 
 </resources>
