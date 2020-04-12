@@ -81,6 +81,7 @@ open class BaseActivity : AppCompatActivity() {
                 getLastKnownLocation()
                 lastLocation = var1?.lastLocation
                 onLocationReceived(location = var1?.lastLocation)
+                fusedLocationClient?.removeLocationUpdates(this)
             }
         }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)

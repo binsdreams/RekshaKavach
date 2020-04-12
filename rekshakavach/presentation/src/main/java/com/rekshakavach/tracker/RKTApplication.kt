@@ -13,5 +13,4 @@ class RKTApplication : DaggerApplication() {
             .mainModule(MainModule(this))
             .build()
     }
-
 }

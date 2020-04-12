@@ -17,7 +17,7 @@ class HomeModule {
     }
 
     @Provides
-    internal fun provideUserRegistrationRepo(api: UserLocationApi, cacheManager: CacheManager): UserLocationRepo {
+    internal fun provideUserLocationRepo(api: UserLocationApi, cacheManager: CacheManager): UserLocationRepo {
         return UserLocationRepoImpl(api,cacheManager)
     }
 }
