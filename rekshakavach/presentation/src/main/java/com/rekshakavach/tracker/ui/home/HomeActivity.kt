@@ -8,6 +8,7 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +22,7 @@ import com.rekshakavach.tracker.di.vm.ViewModelProviderFactory
 import com.rekshakavach.tracker.domain.entity.DataEntity
 import com.rekshakavach.tracker.domain.entity.UserInfoEntity
 import com.rekshakavach.tracker.ui.mark.MarkCovidActivity
+import com.rekshakavach.tracker.ui.scan.ScanQrCodeActivity
 import com.rekshakavach.tracker.ui.service.Actions
 import com.rekshakavach.tracker.ui.service.LocationScheduler
 import com.rekshakavach.tracker.ui.service.ServiceState
@@ -43,15 +45,15 @@ class HomeActivity : DaggerBaseActivity() {
     lateinit var viewModelFactory: ViewModelProviderFactory
     private var userInfoEntity :UserInfoEntity?=null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
-        homeViewModel.initToday()
         userInfoEntity = homeViewModel.getUser()
         handleLocationPermission()
         actionOnService(Actions.START)
-        homeViewModel.getUserProfile()
+        homeViewModel.getMyProfile()
         listenForUSerInfo()
         setClick()
         nameText.text = "Welcome ".plus(homeViewModel.getUserName())
@@ -89,6 +91,9 @@ class HomeActivity : DaggerBaseActivity() {
     }
 
     private fun setImageBitmap(content: String) {
+        if(content.isNullOrEmpty()){
+            return
+        }
         val writer = QRCodeWriter()
         try {
             val bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512)
@@ -107,11 +112,12 @@ class HomeActivity : DaggerBaseActivity() {
     }
 
     private fun listenForUSerInfo(){
-        homeViewModel.userInfoLive.observe(this, Observer {
+        homeViewModel.myProfileLive.observe(this, Observer {
+            getProfileCall()
             when(it){
                 is DataEntity.SUCCESS ->{
                     userInfoEntity = it.data
-                    if(userInfoEntity?.hash_code.isNullOrEmpty()){
+                    if(userInfoEntity?.hash_code.isNullOrEmpty().not()){
                         setImageBitmap(userInfoEntity?.hash_code!!)
                     }
                 }
@@ -137,6 +143,18 @@ class HomeActivity : DaggerBaseActivity() {
            }
        }
         return color
+    }
+
+    private fun getProfileCall(){
+        markMyself?.postDelayed({
+            Log.i("BINIL","getProfileCall")
+            homeViewModel?.getMyProfile()
+        },30*1000)
+
+    }
+
+    fun onQrCodeClick(view :View){
+        startActivity(ScanQrCodeActivity.getScanQrCodeActivity(this))
     }
 
 }

@@ -57,7 +57,7 @@ class MArkCovidViewModel @Inject constructor(private val userRepos :UserCovidInf
 
     fun setDischargeDate(date :Date){
         dischargeSelected = date
-        diagnoseDateStr =dateFormat.format(date.time)
+        dischargeDateStr =dateFormat.format(date.time)
     }
 
     fun getTestDate():Date{

@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name="com.rekshakavach.tracker.RKTApplication"
@@ -52,6 +55,14 @@
             android:enabled="true"
             android:exported="false">
         </service>
+
+        <activity
+            android:name=".ui.scan.ScanQrCodeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.scan.ScannedActivity"
+            android:screenOrientation="portrait" />
 
         <receiver android:enabled="true" android:name=".ui.service.StartReceiver">
             <intent-filter>

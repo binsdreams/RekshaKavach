@@ -15,8 +15,24 @@ import kotlinx.coroutines.channels.produce
 class ProfileRepoImpl(private val api: ProfileApi, private val cacheManager: CacheManager) : ProfileRepo {
 
     private var mapper = UserResponseMapper()
-    override suspend fun  getUserProfileAsync(scope: CoroutineScope): ReceiveChannel<DataEntity<UserInfoEntity>>{
+    override suspend fun  getUserProfileAsync(scope: CoroutineScope,userId :String): ReceiveChannel<DataEntity<UserInfoEntity>>{
 
+        return scope.produce {
+            try {
+                val response : UserDetailsResponse = api.getUserProfileAsync(userId).await()
+                if(response.message?.isNullOrEmpty() == false || response.errors?.size > 0){
+                    send(DataEntity.ERROR(ErrorEntity("Failure")))
+                }else{
+                    var user =mapper.map(response)
+                    send(DataEntity.SUCCESS(user))
+                }
+            } catch (e: Exception) {
+                send(DataEntity.ERROR(ErrorEntity(e.message)))
+            }
+        }
+    }
+
+    override suspend fun getMyProfile(scope: CoroutineScope): ReceiveChannel<DataEntity<UserInfoEntity>> {
         return scope.produce {
             try {
                 var userId = getUser().user_id?:""

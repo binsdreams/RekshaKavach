@@ -6,6 +6,7 @@ import com.rekshakavach.tracker.di.vm.ViewModelFactoryModule
 import com.rekshakavach.tracker.ui.home.di.HomeActivityModule
 import com.rekshakavach.tracker.ui.join.di.PhoneEntryFragmentModule
 import com.rekshakavach.tracker.ui.mark.di.MarkCovidActivityModule
+import com.rekshakavach.tracker.ui.scan.di.ScannerActivityModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -34,7 +35,8 @@ import javax.inject.Singleton
     ViewModelFactoryModule::class,
     PhoneEntryFragmentModule::class,
     HomeActivityModule::class,
-    MarkCovidActivityModule::class
+    MarkCovidActivityModule::class,
+    ScannerActivityModule::class
 ])
 interface AppComponent : AndroidInjector<RKTApplication> {
 

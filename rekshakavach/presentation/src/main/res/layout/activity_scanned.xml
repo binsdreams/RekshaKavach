@@ -8,14 +8,13 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="@dimen/size_20dp"
-    tools:context=".ui.home.HomeActivity">
+    tools:context=".ui.scan.ScannedActivity">
 
     <LinearLayout
         android:id="@+id/action_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="end"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,15 +23,15 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/write" />
+            app:srcCompat="@drawable/ic_back"
+            android:onClick="onbackClicked"/>
 
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/nameText"
+        android:id="@+id/userNAme"
         android:layout_marginTop="@dimen/fab_margin"
         style="@style/StyleTextView_18_wrap_bold"
-        android:text="Wecome Binil Thomas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/action_layout"/>
 
@@ -46,29 +45,19 @@
         app:drawableStartCompat="@drawable/ic_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+        app:layout_constraintTop_toBottomOf="@+id/userNAme"
+        android:visibility="invisible"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/qrCodeImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20dp"
-        android:minWidth="300dp"
-        android:minHeight="300dp"
+        android:minWidth="400dp"
+        android:minHeight="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/locationText"
         app:srcCompat="@drawable/ic_covid" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/qrcodeBtn"
-        style="@style/StyleButtonOutlined"
-        android:layout_width="match_parent"
-        android:backgroundTint="@color/colorPrimary"
-        android:minHeight="@dimen/size84"
-        android:onClick="onQrCodeClick"
-        android:text="@string/qr_btn"
-        app:layout_constraintTop_toBottomOf="@+id/qrCodeImageView"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
