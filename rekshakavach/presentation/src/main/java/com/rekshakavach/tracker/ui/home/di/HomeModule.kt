@@ -1,9 +1,9 @@
 package com.rekshakavach.tracker.ui.home.di;
 
-import com.rekshakavach.tracker.data.api.UserLocationApi
+import com.rekshakavach.tracker.data.api.UserCovidApi
 import com.rekshakavach.tracker.data.cache.CacheManager
-import com.rekshakavach.tracker.data.repository.UserLocationRepoImpl
-import com.rekshakavach.tracker.domain.repo.UserLocationRepo
+import com.rekshakavach.tracker.data.repository.UserCovidInfoRepoImpl
+import com.rekshakavach.tracker.domain.repo.UserCovidInfoRepo
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -12,12 +12,12 @@ import retrofit2.Retrofit
 class HomeModule {
 
     @Provides
-    internal fun provideUserUserLocationApi(retrofit: Retrofit): UserLocationApi {
-        return retrofit.create(UserLocationApi::class.java)
+    internal fun provideUserCovidApi(retrofit: Retrofit): UserCovidApi {
+        return retrofit.create(UserCovidApi::class.java)
     }
 
     @Provides
-    internal fun provideUserLocationRepo(api: UserLocationApi, cacheManager: CacheManager): UserLocationRepo {
-        return UserLocationRepoImpl(api,cacheManager)
+    internal fun provideUserLocationRepo(api: UserCovidApi, cacheManager: CacheManager): UserCovidInfoRepo {
+        return UserCovidInfoRepoImpl(api,cacheManager)
     }
 }

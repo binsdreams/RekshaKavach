@@ -30,7 +30,7 @@ open class DaggerBaseActivity : DaggerAppCompatActivity() {
     private lateinit var resultReceiver: AddressResultReceiver
     private var addressOutput :String?= null
     var needAddress = true
-    
+
     fun initAction(backBtn: Boolean, titleResId: Int, cartBtn: Boolean) {
         if (titleResId != 0) {
             action_title?.setText(titleResId)

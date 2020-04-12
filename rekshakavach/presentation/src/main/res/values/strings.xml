@@ -46,6 +46,13 @@
     <string name="yourLoc">You are in</string>
 
     <string name="hotoSpots">Corona \nHotspots</string>
-    <string name="isItTrue">Is this \nTrue?</string>
+    <string name="isItTrue">Are you diagnosed with COVID-19?</string>
+
+    <string name="areyoytestedPositive">Tested positive?</string>
+    <string name="positive_declaration_date">Date of Test?</string>
+    <string name="is_discharged">Are you Discharged?</string>
+    <string name="discharge_date">Date of Discharge?</string>
+    <string name="save">Save</string>
+
 
 </resources>

@@ -84,6 +84,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="StyleTextView_17_wrap_bild" parent="StyleTextView_18_wrap_bold">
+        <item name="android:textSize">@dimen/text_size_17</item>
+    </style>
+
     <style name="StyleTextView_18_wrap" parent="StyleTextView_18_wrap_bold">
         <item name="android:textStyle">normal</item>
     </style>

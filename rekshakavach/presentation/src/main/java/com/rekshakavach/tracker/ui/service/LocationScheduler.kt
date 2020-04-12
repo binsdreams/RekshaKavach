@@ -18,7 +18,6 @@ import com.rekshakavach.tracker.di.MainModule
 import com.rekshakavach.tracker.di.NetworkModule
 import com.rekshakavach.tracker.domain.repo.UserLocationRepo
 import com.rekshakavach.tracker.ui.home.HomeActivity
-import com.rekshakavach.tracker.ui.home.di.HomeModule
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.consume
 
@@ -170,7 +169,7 @@ class LocationScheduler :Service(){
         var network = NetworkModule()
         var cache = MainModule(application = application as RKTApplication).provideCacheManager()
         var retrofit =network.provideRetrofitInstance(network.provideOkHttpClient(cache))
-        var homeModule = HomeModule()
+        var homeModule = ServiceModule()
         var api = homeModule.provideUserUserLocationApi(retrofit)
         androidId = Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
         userLocationRepo = homeModule.provideUserLocationRepo(api,cache)

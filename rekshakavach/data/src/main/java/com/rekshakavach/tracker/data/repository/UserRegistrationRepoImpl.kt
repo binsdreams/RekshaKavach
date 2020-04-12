@@ -26,7 +26,7 @@ class UserRegistrationRepoImpl(private val api: UserRegistrationApi, private val
                 reqBodyParams["phone"] =user.phone.toString()
                 reqBodyParams["registered_date"] = user.registered_date?:""
                 reqBodyParams["dob"] = user.dob?:""
-                val response : UserDetailsResponse = api.register(reqBodyParams).await()
+                val response : UserDetailsResponse = api.registerAsync(reqBodyParams).await()
                 if(response.message?.isNullOrEmpty() == false || response.errors?.size > 0){
                     send(DataEntity.ERROR(ErrorEntity("Failure")))
                 }else{
