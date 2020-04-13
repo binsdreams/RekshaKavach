@@ -57,7 +57,7 @@ class HomeActivity : DaggerBaseActivity() {
         listenForUSerInfo()
         setClick()
         nameText.text = "Welcome ".plus(homeViewModel.getUserName())
-        setImageBitmap(userInfoEntity?.hash_code?:"1586682688427")
+        setImageBitmap(userInfoEntity?.user_id?:"1586682688427")
     }
 
     override fun  onLocationReceived(location: Location?){
@@ -117,8 +117,8 @@ class HomeActivity : DaggerBaseActivity() {
             when(it){
                 is DataEntity.SUCCESS ->{
                     userInfoEntity = it.data
-                    if(userInfoEntity?.hash_code.isNullOrEmpty().not()){
-                        setImageBitmap(userInfoEntity?.hash_code!!)
+                    if(userInfoEntity?.user_id.isNullOrEmpty().not()){
+                        setImageBitmap(userInfoEntity?.user_id!!)
                     }
                 }
                 is DataEntity.ERROR ->{
